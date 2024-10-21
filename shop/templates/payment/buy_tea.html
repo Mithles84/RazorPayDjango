@@ -1,0 +1,19 @@
+<h1>Buy {{ tea.name }}</h1>
+<p>{{ tea.description }}</p>
+<p>Price: ₹{{ tea.price }}</p>
+
+<form action="/payment/success/" method="POST">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"
+            data-key="{{ razorpay_key_id }}"
+            data-amount="{{ amount|floatformat:0 }}00"
+            data-currency="INR"
+            data-order_id="{{ razorpay_order_id }}"
+            data-buttontext="Buy Tea"
+            data-name="Tea Shop"
+            data-description="Payment for Tea"
+            data-image="/static/logo.png"
+            data-prefill.name="John Doe"
+            data-theme.color="#F37254">
+    </script>
+    <input type="hidden" value="{{ csrf_token }}" name="csrfmiddlewaretoken">
+</form>
